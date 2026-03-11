@@ -1,0 +1,29 @@
+body {
+    background: #0b0f1a;
+    color: #e0e6ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+button {
+    padding: 15px 25px;
+    background: #3a4fff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background: #5c6cff;
+}
+
+.upgrade {
+    background: #1a1f33;
+    padding: 15px;
+    margin: 10px auto;
+    width: 300px;
+    border-radius: 8px;
+}
