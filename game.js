@@ -1,5 +1,16 @@
 let colonials = 0;
-let cps = 0; // Colonials per second
+let cps = 0;
+
+const colonialImg = document.getElementById("colonial-img");
+
+colonialImg.onclick = () => {
+    colonials++;
+    updateDisplay();
+};
+
+function updateDisplay() {
+    document.getElementById("counter").innerText = `Colonials: ${colonials}`;
+}
 
 const upgrades = [
     {
@@ -27,15 +38,6 @@ const upgrades = [
         description: "A godlike species reshapes your destiny."
     }
 ];
-
-document.getElementById("clicker").onclick = () => {
-    colonials++;
-    updateDisplay();
-};
-
-function updateDisplay() {
-    document.getElementById("counter").innerText = `Colonials: ${colonials}`;
-}
 
 function renderUpgrades() {
     const container = document.getElementById("upgrades");
@@ -67,3 +69,4 @@ setInterval(() => {
 }, 1000);
 
 renderUpgrades();
+
