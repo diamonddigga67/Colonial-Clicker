@@ -1090,9 +1090,10 @@ setInterval(() => {
     saveGame();
 }, 1000);
 
-/* ============================
-      GOLDEN EVENTS SYSTEM
-============================ */
+document.getElementById("btn-gravity-nav").addEventListener("click", () => {
+    showMinigamePanel("gravity-nav-panel");
+});
+
 /* ============================
       GOLDEN EVENTS SYSTEM
 ============================ */
@@ -1833,6 +1834,10 @@ document.getElementById("reset-btn").onclick = () => {
         updateDisplay();
     }
 };
+function initGravityNavigation() {
+    console.log("Gravity Navigation initialized");
+    // Physics, levels, larva, hazards, and evolution will be added here
+}
 
 /* INITIALIZE */
 loadGame();
@@ -1842,3 +1847,5 @@ updateDisplay();
 renderQTree();
 scheduleGoldenEvents();
 initWormWeb();
+initGravityNavigation();
+initArchaeotechLab();
