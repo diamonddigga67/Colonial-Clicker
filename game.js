@@ -91,6 +91,16 @@ function spawnFloat(event, amount, isCrit) {
     setTimeout(() => float.remove(), 1000);
 }
 
+function showGoldenMessage(text) {
+    const msg = document.getElementById("golden-message");
+    msg.innerText = text;
+    msg.style.opacity = 1;
+
+    setTimeout(() => {
+        msg.style.opacity = 0;
+    }, 1800);
+}
+
 /* BUILDINGS (EVOLUTIONS) */
 const buildings = [
     // TIER 1
