@@ -11,7 +11,7 @@ body {
     height: 100vh;
 }
 
-/* LEFT PANEL */
+/* LEFT PANEL: BUILDINGS */
 #upgrade-panel {
     width: 300px;
     background: #11162a;
@@ -40,7 +40,7 @@ body {
     background: #5c6cff;
 }
 
-/* MAIN AREA */
+/* CENTER: MAIN AREA */
 #main-area {
     flex: 1;
     text-align: center;
@@ -82,7 +82,7 @@ body {
     100% { opacity: 0; transform: translateY(-40px); }
 }
 
-/* RIGHT PANEL */
+/* RIGHT PANEL: BOOSTS */
 #boost-panel {
     width: 300px;
     background: #11162a;
