@@ -14,17 +14,18 @@
             <h2>Evolution Tree</h2>
             <div id="buildings"></div>
         </div>
+
+        <!-- WORM UPGRADE WEB -->
         <div id="worm-upgrade-web">
-    <svg id="worm-web-lines"></svg>
+            <svg id="worm-web-lines"></svg>
 
-    <div class="web-node" data-upg="1">I</div>
-    <div class="web-node" data-upg="2">II</div>
-    <div class="web-node" data-upg="3">III</div>
-    <div class="web-node" data-upg="4">IV</div>
-    <div class="web-node" data-upg="5">V</div>
-    <div class="web-node" data-upg="6">VI</div>
-</div>
-
+            <div class="web-node" data-upg="1">I</div>
+            <div class="web-node" data-upg="2">II</div>
+            <div class="web-node" data-upg="3">III</div>
+            <div class="web-node" data-upg="4">IV</div>
+            <div class="web-node" data-upg="5">V</div>
+            <div class="web-node" data-upg="6">VI</div>
+        </div>
 
         <!-- CENTER: MAIN GAME -->
         <div id="main-area">
@@ -43,8 +44,6 @@
             <!-- Golden event container -->
             <div id="event-layer"></div>
             <div id="golden-message"></div>
-    
-
 
             <!-- MINIGAME BAR -->
             <div id="minigame-bar">
@@ -53,10 +52,9 @@
                 <button class="mini-btn" id="btn-burrow">Burrow Network</button>
                 <button class="mini-btn" id="btn-neural">Neural Web</button>
                 <button class="mini-btn" id="btn-qtree">Q‑Tree / Ascend</button>
-            
             </div>
 
-            <!-- MINIGAME PANEL -->
+            <!-- GENERIC MINIGAME OVERLAY -->
             <div id="minigame-panel" class="overlay hidden">
                 <div class="overlay-inner">
                     <button class="close-overlay" id="close-minigame">✕</button>
@@ -64,71 +62,20 @@
                     <div id="minigame-content"></div>
                 </div>
             </div>
+
+            <!-- BURROW NETWORK PANEL -->
             <div id="burrow-panel" class="minigame-panel" style="display:none;">
-    <h2>Burrow Network</h2>
-    <div id="burrow-info">
-        <span id="burrow-worms">Worms: 0</span>
-        <span id="burrow-runs">Runs: 0</span>
-        <span id="burrow-perm">Perm bonus: 0%</span>
-    </div>
-
-    <div id="burrow-grid"></div>
-
-    <div id="burrow-status"></div>
-<div id="gravity-nav-panel" class="minigame-panel" style="display:none;">
-    <div id="gravity-nav-ui">
-        <h2>Gravity Navigation</h2>
-        <div id="gravity-level-select">
-            <button id="gravity-reset-save">Reset Progress</button>
-<div id="gravity-depth">Depth: 0m</div>
-
-            <div id="gravity-evolution-display"></div>
-            <button class="gn-level-btn" data-level="1">Level 1</button>
-            <button class="gn-level-btn" data-level="2">Level 2</button>
-            <button class="gn-level-btn" data-level="3">Level 3</button>
-        </div>
-        <div id="gravity-evolution-display"></div>
-        <button id="gravity-restart-btn">Restart</button>
-    </div>
-
-    <div id="gravity-cavern-viewport">
-        <!-- Larva, hazards, collectibles, and level geometry will be injected here -->
-    </div>
-</div>
-    <!-- Popup build menu -->
-    <div id="burrow-build-menu">
-        <button data-build="nursery">Nursery</button>
-        <button data-build="storage">Storage</button>
-        <button data-build="queenHall">Queen’s Hall</button>
-    </div>
-
-    <div id="burrow-controls">
-        <button id="burrow-start-run">Start Run</button>
-        <button id="burrow-end-run">End Run</button>
-    </div>
-</div>
-
-
-            <!-- Q‑TREE OVERLAY -->
-            <div id="qtree-panel" class="overlay hidden">
-                <div class="overlay-inner">
-                    <button class="close-overlay" id="close-qtree">✕</button>
-                    <h2>Q‑Tree</h2>
-                    <p id="q-essence-display">Q‑Essence: 0</p>
-                    <div id="qtree-circle"></div>
-                    <button id="ascend-btn">Ascend (Prestige)</button>
+                <h2>Burrow Network</h2>
+                <div id="burrow-info">
+                    <span id="burrow-worms">Worms: 0</span>
+                    <span id="burrow-runs">Runs: 0</span>
+                    <span id="burrow-perm">Perm bonus: 0%</span>
                 </div>
-            </div>
-        </div>
 
-        <!-- RIGHT: SPECIAL UPGRADES -->
-        <div id="boost-panel">
-            <h2>Upgrades</h2>
-            <div id="boosts"></div>
-        </div>
+                <div id="burrow-grid"></div>
 
-    </div>
+                <div id="burrow-status"></div>
 
-    <script src="game.js"></script>
-</body>
-</html>
+                <!-- Popup build menu -->
+                <div id="burrow-build-menu">
+                    <button data-build="nursery">Nursery</button>
