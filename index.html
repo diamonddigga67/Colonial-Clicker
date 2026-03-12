@@ -31,6 +31,35 @@
 
             <!-- Golden event container -->
             <div id="event-layer"></div>
+
+            <!-- MINIGAME BAR -->
+            <div id="minigame-bar">
+                <button class="mini-btn" id="btn-archaeotech">Archaeotech Lab</button>
+                <button class="mini-btn" id="btn-gravity">Gravity Nav</button>
+                <button class="mini-btn" id="btn-burrow">Burrow Network</button>
+                <button class="mini-btn" id="btn-neural">Neural Web</button>
+                <button class="mini-btn" id="btn-qtree">Q‑Tree / Ascend</button>
+            </div>
+
+            <!-- MINIGAME PANEL -->
+            <div id="minigame-panel" class="overlay hidden">
+                <div class="overlay-inner">
+                    <button class="close-overlay" id="close-minigame">✕</button>
+                    <h2 id="minigame-title">Minigame</h2>
+                    <div id="minigame-content"></div>
+                </div>
+            </div>
+
+            <!-- Q‑TREE OVERLAY -->
+            <div id="qtree-panel" class="overlay hidden">
+                <div class="overlay-inner">
+                    <button class="close-overlay" id="close-qtree">✕</button>
+                    <h2>Q‑Tree</h2>
+                    <p id="q-essence-display">Q‑Essence: 0</p>
+                    <div id="qtree-circle"></div>
+                    <button id="ascend-btn">Ascend (Prestige)</button>
+                </div>
+            </div>
         </div>
 
         <!-- RIGHT: SPECIAL UPGRADES -->
