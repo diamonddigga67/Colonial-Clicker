@@ -2537,6 +2537,96 @@ function handleLarvaCollision() {
 }
 const effectiveGravity = evolution.memory ? GRAVITY * 0.9 : GRAVITY;
 velY += effectiveGravity;
+let gravitySave = {
+    evolution: {
+        stabilityFins: false,
+        pulse: false,
+        shield: false,
+        memory: false
+    },
+    evolutionPoints: 0,
+    completedLevels: {
+        1: false,
+        2: false,
+        3: false
+    }
+};
+function loadGravitySave() {
+    const data = localStorage.getItem("gravityNavSave");
+    if (data) {
+        gravitySave = JSON.parse(data);
+
+        evolution = gravitySave.evolution;
+        evolutionPoints = gravitySave.evolutionPoints;
+
+        updateEvolutionDisplay();
+        updateLevelButtons();
+    }
+}
+loadGravitySave();
+function saveGravityNav() {
+    gravitySave.evolution = evolution;
+    gravitySave.evolutionPoints = evolutionPoints;
+
+    localStorage.setItem("gravityNavSave", JSON.stringify(gravitySave));
+}
+function completeLevel(levelNumber) {
+    gravityNavRunning = false;
+
+    larva.style.transition = "opacity 0.4s";
+    larva.style.opacity = "0";
+
+    setTimeout(() => larva.remove(), 400);
+
+    // Mark level complete
+    gravitySave.completedLevels[levelNumber] = true;
+
+    // Unlock evolution traits
+    if (levelNumber === 1) {
+        evolution.stabilityFins = true;
+        evolutionPoints += 1;
+    }
+
+    if (levelNumber === 2) {
+        evolution.pulse = true;
+        evolutionPoints += 2;
+    }
+
+    if (levelNumber === 3) {
+        evolution.shield = true;
+        evolution.memory = true;
+        evolutionPoints += 3;
+    }
+
+    updateEvolutionDisplay();
+    updateLevelButtons();
+    saveGravityNav();
+
+    alert(`Level ${levelNumber} complete! Evolution unlocked.`);
+}
+function updateLevelButtons() {
+    const buttons = document.querySelectorAll(".gn-level-btn");
+
+    buttons.forEach(btn => {
+        const level = parseInt(btn.dataset.level);
+
+        if (level === 1) {
+            btn.disabled = false;
+        } else if (level === 2) {
+            btn.disabled = !gravitySave.completedLevels[1];
+        } else if (level === 3) {
+            btn.disabled = !gravitySave.completedLevels[2];
+        }
+    });
+}
+saveGravityNav();
+document.getElementById("gravity-reset-save").addEventListener("click", () => {
+    if (confirm("Reset all Gravity Navigation progress?")) {
+        localStorage.removeItem("gravityNavSave");
+        location.reload();
+    }
+});
+
 
 /* INITIALIZE */
 loadGame();
