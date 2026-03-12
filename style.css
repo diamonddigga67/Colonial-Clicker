@@ -719,3 +719,30 @@ body::before {
     border-radius: 50%;
     box-shadow: 0 0 20px #0ff8;
 }
+.spore-vent {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #0f08, #050);
+    border-radius: 50%;
+    box-shadow: 0 0 12px #0f08;
+}
+
+.spore-cloud {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: rgba(0,255,150,0.25);
+    border-radius: 20px;
+    filter: blur(4px);
+    pointer-events: none;
+}
+.tendril {
+    position: absolute;
+    width: 20px;
+    height: 120px;
+    background: linear-gradient(to bottom, #060, #0a0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0f05;
+    transform-origin: top center;
+}
