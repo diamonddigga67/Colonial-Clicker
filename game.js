@@ -2329,6 +2329,98 @@ const gravityLevels = {
     }
 };
 
+function renderLevel(levelNumber) {
+    const level = gravityLevels[levelNumber];
+    const viewport = document.getElementById("gravity-cavern-viewport");
+
+    // Clear old elements
+    viewport.innerHTML = "";
+
+    // Walls
+    renderLevelWalls(levelNumber);
+
+    // Magnets
+    level.magnets.forEach(m => spawnMagnet(m.x, m.y, m.strength));
+
+    // Spore vents
+    level.vents.forEach(v => spawnSporeVent(v.x, v.y, v.direction));
+
+    // Tendrils
+    level.tendrils.forEach(t => spawnTendril(t.x, t.y, t.sway));
+
+    // Lumens
+    level.lumens.forEach(l => spawnLumen(l.x, l.y));
+
+    // Nutrients
+    level.nutrients.forEach(n => spawnNutrient(n.x, n.y));
+
+    // Ancient cells
+    level.ancient.forEach(a => spawnAncientCell(a.x, a.y));
+
+    // Exit platform
+    spawnExitPlatform(level.exitY);
+}
+function spawnExitPlatform(y) {
+    const viewport = document.getElementById("gravity-cavern-viewport");
+
+    const exit = document.createElement("div");
+    exit.classList.add("exit-platform");
+    exit.style.left = "100px";
+    exit.style.top = y + "px";
+
+    viewport.appendChild(exit);
+}
+function checkLevelCompletion(levelNumber) {
+    const exitY = gravityLevels[levelNumber].exitY;
+
+    if (larvaY > exitY - 40 && larvaY < exitY + 40) {
+        completeLevel(levelNumber);
+    }
+}
+checkLevelCompletion(currentLevel);
+function completeLevel(levelNumber) {
+    gravityNavRunning = false;
+
+    // Fade out larva
+    larva.style.transition = "opacity 0.4s";
+    larva.style.opacity = "0";
+
+    setTimeout(() => {
+        larva.remove();
+    }, 400);
+
+    // Rewards
+    let reward = 0;
+    if (levelNumber === 1) reward = 1;
+    if (levelNumber === 2) reward = 2;
+    if (levelNumber === 3) reward = 3;
+
+    evolutionPoints += reward;
+    updateEvolutionDisplay();
+
+    alert(`Level ${levelNumber} complete! Evolution +${reward}`);
+}
+document.querySelectorAll(".gn-level-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const level = parseInt(btn.dataset.level);
+        startGravityLevel(level);
+    });
+});
+let currentLevel = 1;
+
+function startGravityLevel(levelNumber) {
+    currentLevel = levelNumber;
+
+    collectedLumens = 0;
+    collectedNutrients = 0;
+    collectedAncientCells = 0;
+
+    renderLevel(levelNumber);
+    spawnLarva();
+
+    gravityNavRunning = true;
+    updateLarvaPhysics();
+}
 
 /* INITIALIZE */
 loadGame();
