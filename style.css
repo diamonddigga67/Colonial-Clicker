@@ -396,3 +396,20 @@ body::before {
 .ruin-tile.cache.revealed {
     background: #3a3a1a;
 }
+#golden-message {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid #ffd700aa;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #ffd700;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ffd700aa;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
