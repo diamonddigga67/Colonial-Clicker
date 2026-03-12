@@ -1,4 +1,5 @@
 let colonials = 0;
+let clickPower = 1;
 
 const colonialImg = document.getElementById("colonial-img");
 
@@ -9,7 +10,7 @@ let wormBranchMultiplier = 1;     // Subterranean Empires
 
 /* CLICK HANDLER WITH SPECIAL ABILITIES */
 colonialImg.onclick = (event) => {
-    let gain = 1;
+    let gain = clickPower;
 
     // Quantum Pilgrims: 10% chance for 10x click
     const quantum = getBuilding("quantum");
@@ -19,10 +20,10 @@ colonialImg.onclick = (event) => {
         }
     }
 
-    // Psionic Ophidians: extra CPS-based click gain
+    // Psionic Ophidians: extra CPS-based click gain (1x CPS)
     const psionic = getBuilding("psionic");
     if (psionic && psionic.owned > 0) {
-        gain += Math.floor(getTotalCps() * 0.5);
+        gain += Math.floor(getTotalCps());
     }
 
     colonials += gain;
@@ -45,21 +46,15 @@ function spawnFloat(event, amount) {
     setTimeout(() => float.remove(), 1000);
 }
 
-/* DISPLAY UPDATE */
-function updateDisplay() {
-    document.getElementById("counter").innerText = `Colonials: ${colonials}`;
-    document.getElementById("cps-counter").innerText = `CPS: ${getTotalCps()}`;
-}
-
 /* BUILDINGS (EVOLUTIONS) */
 const buildings = [
     // TIER 1
     {
         id: "gravital",
         name: "Gravital Adaptation",
-        baseCost: 50,
-        cost: 50,
-        baseCps: 1,
+        baseCost: 150,
+        cost: 150,
+        baseCps: 5,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -70,9 +65,9 @@ const buildings = [
     {
         id: "worm",
         name: "Worm Children",
-        baseCost: 75,
-        cost: 75,
-        baseCps: 1,
+        baseCost: 225,
+        cost: 225,
+        baseCps: 6,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -83,9 +78,9 @@ const buildings = [
     {
         id: "snake",
         name: "Snake People",
-        baseCost: 100,
-        cost: 100,
-        baseCps: 2,
+        baseCost: 300,
+        cost: 300,
+        baseCps: 10,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -98,9 +93,9 @@ const buildings = [
     {
         id: "ruin",
         name: "Ruin Haunters",
-        baseCost: 400,
-        cost: 400,
-        baseCps: 8,
+        baseCost: 1200,
+        cost: 1200,
+        baseCps: 40,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -111,9 +106,9 @@ const buildings = [
     {
         id: "blind",
         name: "Blind Folk",
-        baseCost: 600,
-        cost: 600,
-        baseCps: 10,
+        baseCost: 1800,
+        cost: 1800,
+        baseCps: 50,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -124,9 +119,9 @@ const buildings = [
     {
         id: "wormPat",
         name: "Worm Patriarchs",
-        baseCost: 800,
-        cost: 800,
-        baseCps: 12,
+        baseCost: 2400,
+        cost: 2400,
+        baseCps: 60,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -137,9 +132,9 @@ const buildings = [
     {
         id: "wormCity",
         name: "Worm Cities",
-        baseCost: 1000,
-        cost: 1000,
-        baseCps: 15,
+        baseCost: 3000,
+        cost: 3000,
+        baseCps: 75,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -150,9 +145,9 @@ const buildings = [
     {
         id: "coil",
         name: "Coil-Minds",
-        baseCost: 1200,
-        cost: 1200,
-        baseCps: 18,
+        baseCost: 3600,
+        cost: 3600,
+        baseCps: 90,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -163,9 +158,9 @@ const buildings = [
     {
         id: "serpentNoble",
         name: "Serpent Nobles",
-        baseCost: 1500,
-        cost: 1500,
-        baseCps: 20,
+        baseCost: 4500,
+        cost: 4500,
+        baseCps: 100,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -178,9 +173,9 @@ const buildings = [
     {
         id: "starDwellers",
         name: "Star-Dwellers",
-        baseCost: 8000,
-        cost: 8000,
-        baseCps: 80,
+        baseCost: 24000,
+        cost: 24000,
+        baseCps: 400,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -191,9 +186,9 @@ const buildings = [
     {
         id: "starBlind",
         name: "Star-Blind Navigators",
-        baseCost: 10000,
-        cost: 10000,
-        baseCps: 90,
+        baseCost: 30000,
+        cost: 30000,
+        baseCps: 450,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -204,9 +199,9 @@ const buildings = [
     {
         id: "hiveKings",
         name: "Hive Kings",
-        baseCost: 12000,
-        cost: 12000,
-        baseCps: 100,
+        baseCost: 36000,
+        cost: 36000,
+        baseCps: 500,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -217,9 +212,9 @@ const buildings = [
     {
         id: "burrowedMetros",
         name: "Burrowed Metropolises",
-        baseCost: 14000,
-        cost: 14000,
-        baseCps: 110,
+        baseCost: 42000,
+        cost: 42000,
+        baseCps: 550,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -230,9 +225,9 @@ const buildings = [
     {
         id: "neuroSerpents",
         name: "Neuro-Serpents",
-        baseCost: 16000,
-        cost: 16000,
-        baseCps: 120,
+        baseCost: 48000,
+        cost: 48000,
+        baseCps: 600,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -243,9 +238,9 @@ const buildings = [
     {
         id: "crownedOphidians",
         name: "Crowned Ophidians",
-        baseCost: 18000,
-        cost: 18000,
-        baseCps: 130,
+        baseCost: 54000,
+        cost: 54000,
+        baseCps: 650,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -258,9 +253,9 @@ const buildings = [
     {
         id: "voidborne",
         name: "Voidborne Colonials",
-        baseCost: 50000,
-        cost: 50000,
-        baseCps: 400,
+        baseCost: 150000,
+        cost: 150000,
+        baseCps: 2000,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -271,9 +266,9 @@ const buildings = [
     {
         id: "quantum",
         name: "Quantum Pilgrims",
-        baseCost: 60000,
-        cost: 60000,
-        baseCps: 50,
+        baseCost: 180000,
+        cost: 180000,
+        baseCps: 300,
         owned: 0,
         multiplier: 1,
         branch: "gravital",
@@ -284,9 +279,9 @@ const buildings = [
     {
         id: "planetEaters",
         name: "Planet-Eaters",
-        baseCost: 70000,
-        cost: 70000,
-        baseCps: 300,
+        baseCost: 210000,
+        cost: 210000,
+        baseCps: 1500,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -297,9 +292,9 @@ const buildings = [
     {
         id: "subterranean",
         name: "Subterranean Empires",
-        baseCost: 80000,
-        cost: 80000,
-        baseCps: 200,
+        baseCost: 240000,
+        cost: 240000,
+        baseCps: 1000,
         owned: 0,
         multiplier: 1,
         branch: "worm",
@@ -310,9 +305,9 @@ const buildings = [
     {
         id: "psionic",
         name: "Psionic Ophidians",
-        baseCost: 90000,
-        cost: 90000,
-        baseCps: 150,
+        baseCost: 270000,
+        cost: 270000,
+        baseCps: 800,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -323,9 +318,9 @@ const buildings = [
     {
         id: "imperial",
         name: "Imperial Serpents",
-        baseCost: 100000,
-        cost: 100000,
-        baseCps: 250,
+        baseCost: 300000,
+        cost: 300000,
+        baseCps: 1200,
         owned: 0,
         multiplier: 1,
         branch: "snake",
@@ -337,13 +332,12 @@ const buildings = [
 
 /* COOKIE-CLICKER STYLE BOOSTS */
 const boosts = [
-    // Gravital line
     {
         id: "gravital10",
         building: "gravital",
         required: 10,
-        multiplier: 2,
-        cost: 500,
+        multiplier: 3,
+        cost: 2000,
         name: "Reinforced Skeletons",
         bought: false
     },
@@ -351,19 +345,17 @@ const boosts = [
         id: "gravital25",
         building: "gravital",
         required: 25,
-        multiplier: 2,
-        cost: 2000,
+        multiplier: 3,
+        cost: 8000,
         name: "Hyperdense Bone Matrix",
         bought: false
     },
-
-    // Worm line
     {
         id: "worm10",
         building: "worm",
         required: 10,
-        multiplier: 2,
-        cost: 800,
+        multiplier: 3,
+        cost: 2500,
         name: "Burrowing Instincts",
         bought: false
     },
@@ -371,19 +363,17 @@ const boosts = [
         id: "worm25",
         building: "worm",
         required: 25,
-        multiplier: 2,
-        cost: 2500,
+        multiplier: 3,
+        cost: 9000,
         name: "Segmented Efficiency",
         bought: false
     },
-
-    // Snake line
     {
         id: "snake10",
         building: "snake",
         required: 10,
-        multiplier: 2,
-        cost: 1000,
+        multiplier: 3,
+        cost: 3000,
         name: "Coiled Reflexes",
         bought: false
     },
@@ -391,8 +381,8 @@ const boosts = [
         id: "snake25",
         building: "snake",
         required: 25,
-        multiplier: 2,
-        cost: 3000,
+        multiplier: 3,
+        cost: 10000,
         name: "Serpentine Grace",
         bought: false
     }
@@ -407,13 +397,13 @@ function getBuilding(id) {
 function getTotalCps() {
     let total = 0;
 
-    // Worm branch multiplier from Subterranean Empires
+    // Worm branch multiplier from Subterranean Empires (+50%)
     const subterranean = getBuilding("subterranean");
     wormBranchMultiplier = (subterranean && subterranean.owned > 0) ? 1.5 : 1;
 
-    // Imperial Serpents global bonus
+    // Imperial Serpents global bonus (+5% per)
     const imperial = getBuilding("imperial");
-    imperialBonusMultiplier = imperial ? (1 + 0.01 * imperial.owned) : 1;
+    imperialBonusMultiplier = imperial ? (1 + 0.05 * imperial.owned) : 1;
 
     buildings.forEach(b => {
         if (b.owned > 0) {
@@ -426,6 +416,22 @@ function getTotalCps() {
 
     total = Math.floor(total * imperialBonusMultiplier * eventMultiplier);
     return total;
+}
+
+/* UPDATE DISPLAY + CLICK POWER SCALING */
+function updateDisplay() {
+    // Click power scales with early evolutions
+    const g = getBuilding("gravital");
+    const w = getBuilding("worm");
+    const s = getBuilding("snake");
+
+    clickPower = 1;
+    if (g && g.owned >= 10) clickPower = 2;
+    if (w && w.owned >= 10) clickPower = 3;
+    if (s && s.owned >= 10) clickPower = 5;
+
+    document.getElementById("counter").innerText = `Colonials: ${colonials}`;
+    document.getElementById("cps-counter").innerText = `CPS: ${getTotalCps()}`;
 }
 
 /* RENDER BUILDINGS */
@@ -461,12 +467,13 @@ function buyBuilding(i) {
         colonials -= b.cost;
         b.owned++;
 
-        // Price increases by 20% each purchase
-        b.cost = Math.floor(b.baseCost * Math.pow(1.2, b.owned));
+        // Price increases by 25% each purchase
+        b.cost = Math.floor(b.baseCost * Math.pow(1.25, b.owned));
 
         updateDisplay();
         renderBuildings();
         renderBoosts();
+        saveGame();
     }
 }
 
@@ -506,25 +513,27 @@ function buyBoost(id) {
         updateDisplay();
         renderBoosts();
         renderBuildings();
+        saveGame();
     }
 }
 
 /* SPECIAL ABILITIES TIMERS */
 
-/* Voidborne Colonials: Gravity Well (every 10s, +5x CPS burst) */
+/* Voidborne Colonials: Gravity Well (every 10s, +15x CPS burst) */
 setInterval(() => {
     const voidborne = getBuilding("voidborne");
     if (voidborne && voidborne.owned > 0) {
-        colonials += getTotalCps() * 5;
+        colonials += getTotalCps() * 15;
         updateDisplay();
+        saveGame();
     }
 }, 10000);
 
-/* Planet-Eaters: Consumption Cycle (every 30s, CPS x2 for 10s) */
+/* Planet-Eaters: Consumption Cycle (every 30s, CPS x4 for 10s) */
 setInterval(() => {
     const planetEaters = getBuilding("planetEaters");
     if (planetEaters && planetEaters.owned > 0) {
-        eventMultiplier = 2;
+        eventMultiplier = 4;
         setTimeout(() => {
             eventMultiplier = 1;
         }, 10000);
@@ -535,6 +544,7 @@ setInterval(() => {
 setInterval(() => {
     colonials += getTotalCps();
     updateDisplay();
+    saveGame();
 }, 1000);
 
 /* ============================
@@ -567,7 +577,6 @@ function loadGame() {
 
     colonials = data.colonials ?? 0;
 
-    // Load buildings
     data.buildings?.forEach(saved => {
         const b = buildings.find(x => x.id === saved.id);
         if (b) {
@@ -577,23 +586,23 @@ function loadGame() {
         }
     });
 
-    // Load boosts
     data.boosts?.forEach(saved => {
         const u = boosts.find(x => x.id === saved.id);
         if (u) {
             u.bought = saved.bought;
         }
     });
-
-    updateDisplay();
-    renderBuildings();
-    renderBoosts();
 }
 
-/* Auto-save every 10 seconds */
-setInterval(saveGame, 10000);
+/* MANUAL RESET */
+document.getElementById("reset-btn").onclick = () => {
+    if (confirm("Are you sure you want to reset your progress?")) {
+        localStorage.removeItem("colonialClickerSave");
+        location.reload();
+    }
+};
 
-/* INITIAL RENDER */
+/* INITIALIZE */
 loadGame();
 renderBuildings();
 renderBoosts();
