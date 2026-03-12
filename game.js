@@ -537,8 +537,64 @@ setInterval(() => {
     updateDisplay();
 }, 1000);
 
+/* ============================
+      SAVE / LOAD SYSTEM
+============================ */
+
+function saveGame() {
+    const saveData = {
+        colonials: colonials,
+        buildings: buildings.map(b => ({
+            id: b.id,
+            owned: b.owned,
+            cost: b.cost,
+            multiplier: b.multiplier
+        })),
+        boosts: boosts.map(u => ({
+            id: u.id,
+            bought: u.bought
+        }))
+    };
+
+    localStorage.setItem("colonialClickerSave", JSON.stringify(saveData));
+}
+
+function loadGame() {
+    const raw = localStorage.getItem("colonialClickerSave");
+    if (!raw) return;
+
+    const data = JSON.parse(raw);
+
+    colonials = data.colonials ?? 0;
+
+    // Load buildings
+    data.buildings?.forEach(saved => {
+        const b = buildings.find(x => x.id === saved.id);
+        if (b) {
+            b.owned = saved.owned;
+            b.cost = saved.cost;
+            b.multiplier = saved.multiplier;
+        }
+    });
+
+    // Load boosts
+    data.boosts?.forEach(saved => {
+        const u = boosts.find(x => x.id === saved.id);
+        if (u) {
+            u.bought = saved.bought;
+        }
+    });
+
+    updateDisplay();
+    renderBuildings();
+    renderBoosts();
+}
+
+/* Auto-save every 10 seconds */
+setInterval(saveGame, 10000);
+
 /* INITIAL RENDER */
+loadGame();
 renderBuildings();
 renderBoosts();
 updateDisplay();
-
