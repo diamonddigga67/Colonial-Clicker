@@ -1418,15 +1418,15 @@ document.getElementById("btn-archaeotech").onclick = () => openArchaeotechLab();
 
 document.getElementById("btn-gravity").onclick = () =>
     openSimpleMinigame("Gravity Navigation",
-        "Steer gravity waves to hit targets and gain temporary CPS boosts. (Placeholder.)");
+        "Steer gravity waves to hit targets and gain temporary CPS boosts.");
 
 document.getElementById("btn-burrow").onclick = () =>
     openSimpleMinigame("Burrow Network",
-        "Connect tunnels between nodes to boost Worm branch production. (Placeholder.)");
+        "Connect tunnels between nodes to boost Worm branch production. ");
 
 document.getElementById("btn-neural").onclick = () =>
     openSimpleMinigame("Neural Web",
-        "Link neurons into circuits for psionic bonuses. (Placeholder.)");
+        "Link neurons into circuits for psionic bonuses.");
 
 document.getElementById("btn-qtree").onclick = () => {
     qPanel.classList.remove("hidden");
