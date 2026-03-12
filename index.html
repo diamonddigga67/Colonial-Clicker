@@ -42,6 +42,7 @@
                 <button class="mini-btn" id="btn-burrow">Burrow Network</button>
                 <button class="mini-btn" id="btn-neural">Neural Web</button>
                 <button class="mini-btn" id="btn-qtree">Q‑Tree / Ascend</button>
+            
             </div>
 
             <!-- MINIGAME PANEL -->
@@ -52,6 +53,31 @@
                     <div id="minigame-content"></div>
                 </div>
             </div>
+            <div id="burrow-panel" class="minigame-panel" style="display:none;">
+    <h2>Burrow Network</h2>
+    <div id="burrow-info">
+        <span id="burrow-worms">Worms: 0</span>
+        <span id="burrow-runs">Runs: 0</span>
+        <span id="burrow-perm">Perm bonus: 0%</span>
+    </div>
+
+    <div id="burrow-grid"></div>
+
+    <div id="burrow-status"></div>
+
+    <!-- Popup build menu -->
+    <div id="burrow-build-menu">
+        <button data-build="nursery">Nursery</button>
+        <button data-build="storage">Storage</button>
+        <button data-build="queenHall">Queen’s Hall</button>
+    </div>
+
+    <div id="burrow-controls">
+        <button id="burrow-start-run">Start Run</button>
+        <button id="burrow-end-run">End Run</button>
+    </div>
+</div>
+
 
             <!-- Q‑TREE OVERLAY -->
             <div id="qtree-panel" class="overlay hidden">
