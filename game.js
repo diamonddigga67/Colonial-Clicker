@@ -1878,6 +1878,44 @@ document.addEventListener("keyup", e => {
     }
 });
 
+function updateLarvaPhysics() {
+    if (!gravityNavRunning) return;
+
+    // Gravity
+    velY += GRAVITY;
+
+    // Left thrust
+    if (thrustLeft) {
+        velX -= THRUST;
+        velY -= THRUST * 0.2;
+    }
+
+    // Right thrust
+    if (thrustRight) {
+        velX += THRUST;
+        velY -= THRUST * 0.2;
+    }
+
+    // Clamp speeds
+    velX = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, velX));
+    velY = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, velY));
+
+    // Apply movement
+    larvaX += velX;
+    larvaY += velY;
+
+    // Update position
+    larva.style.left = larvaX + "px";
+    larva.style.top = larvaY + "px";
+
+    requestAnimationFrame(updateLarvaPhysics);
+}
+function startGravityLevel(levelNumber) {
+    spawnLarva();
+    gravityNavRunning = true;
+    updateLarvaPhysics();
+}
+{ x: 100, y: 200, width: 80, height: 300 }
 
 /* INITIALIZE */
 loadGame();
