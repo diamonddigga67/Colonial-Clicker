@@ -311,3 +311,88 @@ body::before {
 .q-node:hover {
     transform: scale(1.08);
 }
+
+/* ARCHAEO TECH LAB GRID */
+.ruin-controls {
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.ruin-controls button {
+    margin: 2px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid #3a4fff66;
+    background: #151a30;
+    color: #e0e6ff;
+    cursor: pointer;
+}
+
+.ruin-controls button:hover {
+    background: #3a4fff;
+}
+
+#ruin-status {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #c0c8ff;
+}
+
+.ruin-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 32px);
+    grid-template-rows: repeat(6, 32px);
+    gap: 4px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ruin-tile {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: #050814;
+    border: 1px solid #252b4a;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e0e6ff;
+    cursor: pointer;
+}
+
+.ruin-tile.hidden {
+    background: #050814;
+    color: transparent;
+}
+
+.ruin-tile.revealed {
+    background: #151a30;
+}
+
+.ruin-tile.player {
+    border: 2px solid #3a4fff;
+    box-shadow: 0 0 8px #3a4fffaa;
+}
+
+.ruin-tile.hazard.revealed {
+    background: #4a1010;
+    border-color: #ff5555;
+}
+
+.ruin-tile.relic.revealed {
+    background: #20351a;
+}
+
+.ruin-tile.core.revealed {
+    background: #1a2438;
+}
+
+.ruin-tile.rare.revealed {
+    background: #3a2a4a;
+}
+
+.ruin-tile.cache.revealed {
+    background: #3a3a1a;
+}
