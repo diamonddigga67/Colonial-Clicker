@@ -1913,9 +1913,120 @@ function updateLarvaPhysics() {
 function startGravityLevel(levelNumber) {
     spawnLarva();
     gravityNavRunning = true;
-    updateLarvaPhysics();
+    updateLarvaPhysics(checkWallCollisions(currentLevel);
+);
 }
 { x: 100, y: 200, width: 80, height: 300 }
+const gravityLevels = {
+    1: {
+        walls: [
+            // Left boundary
+            { x: 0, y: 0, width: 40, height: 2000 },
+            // Right boundary
+            { x: 360, y: 0, width: 40, height: 2000 },
+
+            // Example interior walls
+            { x: 120, y: 300, width: 80, height: 40 },
+            { x: 200, y: 600, width: 100, height: 40 },
+            { x: 80,  y: 900, width: 60, height: 40 }
+        ],
+        exitY: 1800
+    },
+
+    2: {
+        walls: [
+            { x: 0, y: 0, width: 40, height: 2200 },
+            { x: 360, y: 0, width: 40, height: 2200 },
+
+            { x: 140, y: 400, width: 60, height: 40 },
+            { x: 220, y: 700, width: 80, height: 40 },
+            { x: 100, y: 1100, width: 120, height: 40 },
+            { x: 180, y: 1500, width: 80, height: 40 }
+        ],
+        exitY: 2000
+    },
+
+    3: {
+        walls: [
+            { x: 0, y: 0, width: 40, height: 2500 },
+            { x: 360, y: 0, width: 40, height: 2500 },
+
+            { x: 160, y: 300, width: 80, height: 40 },
+            { x: 80,  y: 700, width: 60, height: 40 },
+            { x: 220, y: 1100, width: 100, height: 40 },
+            { x: 140, y: 1500, width: 80, height: 40 },
+            { x: 100, y: 1900, width: 120, height: 40 }
+        ],
+        exitY: 2300
+    }
+};
+function renderLevelWalls(levelNumber) {
+    const viewport = document.getElementById("gravity-cavern-viewport");
+
+    // Clear old walls
+    viewport.querySelectorAll(".cavern-wall").forEach(w => w.remove());
+
+    const walls = gravityLevels[levelNumber].walls;
+
+    walls.forEach(w => {
+        const wall = document.createElement("div");
+        wall.classList.add("cavern-wall");
+        wall.style.left = w.x + "px";
+        wall.style.top = w.y + "px";
+        wall.style.width = w.width + "px";
+        wall.style.height = w.height + "px";
+        viewport.appendChild(wall);
+    });
+}
+function checkWallCollisions(levelNumber) {
+    const walls = gravityLevels[levelNumber].walls;
+
+    const larvaRect = {
+        x: larvaX,
+        y: larvaY,
+        width: 40,
+        height: 80
+    };
+
+    for (let w of walls) {
+        if (
+            larvaRect.x < w.x + w.width &&
+            larvaRect.x + larvaRect.width > w.x &&
+            larvaRect.y < w.y + w.height &&
+            larvaRect.y + larvaRect.height > w.y
+        ) {
+            // Collision detected
+            handleLarvaCollision();
+            return;
+        }
+    }
+}
+function handleLarvaCollision() {
+    larva.classList.add("larva-hit");
+
+    // Remove flash after animation
+    setTimeout(() => larva.classList.remove("larva-hit"), 200);
+
+    // If speed is too high → death
+    if (Math.abs(velX) + Math.abs(velY) > 6) {
+        killLarva();
+    } else {
+        // Soft bounce
+        velX *= -0.4;
+        velY *= -0.4;
+    }
+}
+function killLarva() {
+    gravityNavRunning = false;
+
+    larva.style.transition = "opacity 0.4s";
+    larva.style.opacity = "0";
+
+    setTimeout(() => {
+        larva.remove();
+    }, 400);
+}
+
 
 /* INITIALIZE */
 loadGame();
